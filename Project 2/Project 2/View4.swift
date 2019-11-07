@@ -13,11 +13,13 @@ class View4: UIViewController{
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var continue4: UIButton!
+    
     var data: StateData!
     var target: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         data = StateData()
+        target = data.states[0].capital
         self.picker.dataSource = self
         self.picker.delegate = self
         stateCheck()
@@ -28,13 +30,14 @@ class View4: UIViewController{
     }
     
     func stateCheck(){
-        if(textField.text == target){
+        if(textField.text?.lowercased() == target.lowercased()){
             continue4.isEnabled = true
         }
         else{
             continue4.isEnabled = false
         }
     }
+    
 }
 
 extension View4: UIPickerViewDataSource {
@@ -51,8 +54,12 @@ extension View4: UIPickerViewDataSource {
 extension View4: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        return data.states[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
         target = data.states[row].capital
         stateCheck()
-        return data.states[row].name
     }
 }

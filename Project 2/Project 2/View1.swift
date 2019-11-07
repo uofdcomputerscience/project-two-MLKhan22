@@ -15,15 +15,16 @@ class View1: UIViewController {
     @IBOutlet var switchB: UISwitch!
     @IBOutlet var switchC: UISwitch!
     @IBOutlet var switchD: UISwitch!
-    @IBOutlet var labelA: UILabel!
-    @IBOutlet var labelB: UILabel!
-    @IBOutlet var labelC: UILabel!
-    @IBOutlet var labelD: UILabel!
     @IBOutlet var continueButton1: UIButton!
+    @IBOutlet weak var stackAB: UIStackView!
+    @IBOutlet weak var stackCD: UIStackView!
     
+    
+    static let timeStart = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(View1.timeStart) // Printing out the time to initialize it
         segControlCheck()
         initSwitches()
         switchCheck()
@@ -41,26 +42,12 @@ class View1: UIViewController {
     
     func segControlCheck(){
         if(segmentedController.selectedSegmentIndex == 0){
-            switchA.isHidden = false
-            switchB.isHidden = false
-            labelA.isHidden = false
-            labelB.isHidden = false
-            
-            switchC.isHidden = true
-            switchD.isHidden = true
-            labelC.isHidden = true
-            labelC.isHidden = true
+            stackAB.isHidden = false
+            stackCD.isHidden = true
         }
         if(segmentedController.selectedSegmentIndex == 1){
-            switchA.isHidden = true
-            switchB.isHidden = true
-            labelA.isHidden = true
-            labelB.isHidden = true
-            
-            switchC.isHidden = false
-            switchD.isHidden = false
-            labelC.isHidden = false
-            labelC.isHidden = false
+            stackAB.isHidden = true
+            stackCD.isHidden = false
         }
     }
     
